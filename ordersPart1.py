@@ -24,3 +24,16 @@ def ReadOrders():
         reader = csv.reader(file)
         for row in reader:
             ordersParams.append(row)
+
+def CalculateOrders():
+    for order in ordersParams:
+        sum = int(priceList['base'])
+        sum += int(priceList['cheese']) * int(order[3])
+        sum += int(priceList['salad']) * int(order[2])
+        if (int(order[2]) < 15 and int(order[1]) > 10):
+            sum=sum+10*int(priceList['sausage'])+(int(order[1])-10)*(int(priceList['sausage'])+10)
+        else:
+            sum=sum+int(order[1])*int(priceList['sausage'])
+        if (int(order[4]) == 1):
+            sum +=  int(priceList['extra'])
+        orderSum.append(sum)
